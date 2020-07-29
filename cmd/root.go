@@ -1,11 +1,14 @@
 package cmd
 
 import (
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/connect"
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/create"
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/flags"
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/use"
+	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/factory"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/upgrade"
 	"github.com/devspace-cloud/devspace/pkg/util/exit"
 	flagspkg "github.com/devspace-cloud/devspace/pkg/util/flags"
-	"github.com/devspace-cloud/devspace/pkg/util/log"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -14,14 +17,14 @@ import (
 )
 
 // NewRootCmd returns a new root command
-func NewRootCmd() *cobra.Command {
+func NewRootCmd(f factory.Factory) *cobra.Command {
 	return &cobra.Command{
 		Use:           "devspace-cloud-plugin",
 		SilenceUsage:  true,
 		SilenceErrors: true,
 		Short:         "Welcome to the DevSpace Cloud!",
 		PersistentPreRun: func(cobraCmd *cobra.Command, args []string) {
-			log := log.GetInstance()
+			log := f.GetLog()
 			if globalFlags.Silent {
 				log.SetLevel(logrus.FatalLevel)
 			}
@@ -53,8 +56,10 @@ var globalFlags *flags.GlobalFlags
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
+	f := factory.DefaultFactory()
+
 	// build the root command
-	rootCmd := BuildRoot()
+	rootCmd := BuildRoot(f)
 
 	// set version for --version flag
 	rootCmd.Version = upgrade.GetVersion()
@@ -69,19 +74,23 @@ func Execute() {
 		}
 
 		if globalFlags.Debug {
-			log.GetInstance().Fatalf("%+v", err)
+			f.GetLog().Fatalf("%+v", err)
 		} else {
-			log.GetInstance().Fatal(err)
+			f.GetLog().Fatal(err)
 		}
 	}
 }
 
 // BuildRoot creates a new root command from the
-func BuildRoot() *cobra.Command {
-	rootCmd := NewRootCmd()
+func BuildRoot(f factory.Factory) *cobra.Command {
+	rootCmd := NewRootCmd(f)
 	persistentFlags := rootCmd.PersistentFlags()
 	globalFlags = flags.SetGlobalFlags(persistentFlags)
 
 	// Add sub commands
+	rootCmd.AddCommand(create.NewCreateCmd(f))
+	rootCmd.AddCommand(use.NewUseCmd(f, globalFlags))
+	rootCmd.AddCommand(connect.NewConnectCmd(f))
+
 	return rootCmd
 }
