@@ -1,0 +1,63 @@
+name: devspace-cloud
+version: 0.0.1
+commands:
+  - name: "create"
+    baseArgs: ["create"]
+  - name: "connect"
+    baseArgs: ["connect"]
+  - name: "provider"
+    baseArgs: ["add", "provider"]
+    subCommand: "add"
+  - name: "providers"
+    baseArgs: ["list", "providers"]
+    subCommand: "list"
+  - name: "spaces"
+    baseArgs: ["list", "spaces"]
+    subCommand: "list"
+  - name: "clusters"
+    baseArgs: ["list", "clusters"]
+    subCommand: "clusters"
+  - name: "provider"
+    baseArgs: ["remove", "provider"]
+    subCommand: "remove"
+  - name: "space"
+    baseArgs: ["remove", "space"]
+    subCommand: "remove"
+  - name: "cluster"
+    baseArgs: ["remove", "cluster"]
+    subCommand: "remove"
+  - name: "key"
+    baseArgs: ["reset", "key"]
+    subCommand: "reset"
+  - name: "encryptionkey"
+    baseArgs: ["set", "encryptionkey"]
+    subCommand: "set"
+  - name: "provider"
+    baseArgs: ["use", "provider"]
+    subCommand: "use"
+  - name: "space"
+    baseArgs: ["use", "space"]
+    subCommand: "use"
+vars:
+  - name: DEVSPACE_SPACE
+    baseArgs: ["var", "space"]
+  - name: DEVSPACE_SPACE_NAMESPACE
+    baseArgs: ["var", "space-namespace"]
+  - name: DEVSPACE_USERNAME
+    baseArgs: ["var", "username"]
+binaries:
+  - os: darwin
+    arch: amd64
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-darwin-amd64
+  - os: linux
+    arch: amd64
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-linux-amd64
+  - os: linux
+    arch: 386
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-linux-386
+  - os: windows
+    arch: amd64
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-windows-amd64.exe
+  - os: windows
+    arch: 386
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-windows-386.exe
