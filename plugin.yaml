@@ -18,7 +18,7 @@ commands:
     subCommand: "list"
   - name: "clusters"
     baseArgs: ["list", "clusters"]
-    subCommand: "clusters"
+    subCommand: "list"
   - name: "provider"
     baseArgs: ["remove", "provider"]
     subCommand: "remove"
