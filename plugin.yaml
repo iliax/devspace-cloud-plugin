@@ -42,11 +42,11 @@ commands:
     subCommand: "use"
 vars:
   - name: DEVSPACE_SPACE
-    baseArgs: ["var", "space"]
+    baseArgs: ["vars", "space"]
   - name: DEVSPACE_SPACE_NAMESPACE
-    baseArgs: ["var", "space-namespace"]
+    baseArgs: ["vars", "space-namespace"]
   - name: DEVSPACE_USERNAME
-    baseArgs: ["var", "username"]
+    baseArgs: ["vars", "username"]
 binaries:
   - os: darwin
     arch: amd64

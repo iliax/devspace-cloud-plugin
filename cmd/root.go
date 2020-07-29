@@ -10,6 +10,7 @@ import (
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/reset"
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/set"
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/use"
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/vars"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/factory"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/upgrade"
 	"github.com/devspace-cloud/devspace/pkg/util/exit"
@@ -101,6 +102,7 @@ func BuildRoot(f factory.Factory) *cobra.Command {
 	rootCmd.AddCommand(remove.NewRemoveCmd(f))
 	rootCmd.AddCommand(reset.NewResetCmd(f))
 	rootCmd.AddCommand(set.NewSetCmd(f))
+	rootCmd.AddCommand(vars.NewVarsCmd(f))
 
 	// Add base commands
 	rootCmd.AddCommand(NewLoginCmd(f))
