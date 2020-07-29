@@ -5,7 +5,6 @@ import (
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/cloud/config"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/cloud/resume"
 	"github.com/devspace-cloud/devspace/pkg/devspace/config/loader"
-	"github.com/devspace-cloud/devspace/pkg/devspace/docker"
 	"github.com/devspace-cloud/devspace/pkg/devspace/kubectl"
 	"github.com/devspace-cloud/devspace/pkg/util/kubeconfig"
 	"github.com/devspace-cloud/devspace/pkg/util/log"
@@ -17,13 +16,7 @@ type Factory interface {
 	NewConfigLoader(options *loader.ConfigOptions, log log.Logger) loader.ConfigLoader
 
 	// Kubernetes Clients
-	NewKubeDefaultClient() (kubectl.Client, error)
 	NewKubeClientFromContext(context, namespace string, switchContext bool) (kubectl.Client, error)
-	NewKubeClientBySelect(allowPrivate bool, switchContext bool, log log.Logger) (kubectl.Client, error)
-
-	// Docker
-	NewDockerClient(log log.Logger) (docker.Client, error)
-	NewDockerClientWithMinikube(currentKubeContext string, preferMinikube bool, log log.Logger) (docker.Client, error)
 
 	// Cloud
 	GetProvider(useProviderName string, log log.Logger) (cloud.Provider, error)
@@ -66,31 +59,10 @@ func (f *DefaultFactoryImpl) NewConfigLoader(options *loader.ConfigOptions, log 
 	return loader.NewConfigLoader(options, log)
 }
 
-// NewDockerClient implements interface
-func (f *DefaultFactoryImpl) NewDockerClient(log log.Logger) (docker.Client, error) {
-	return docker.NewClient(log)
-}
-
-// NewDockerClientWithMinikube implements interface
-func (f *DefaultFactoryImpl) NewDockerClientWithMinikube(currentKubeContext string, preferMinikube bool, log log.Logger) (docker.Client, error) {
-	return docker.NewClientWithMinikube(currentKubeContext, preferMinikube, log)
-}
-
-// NewKubeDefaultClient implements interface
-func (f *DefaultFactoryImpl) NewKubeDefaultClient() (kubectl.Client, error) {
-	return kubectl.NewDefaultClient()
-}
-
 // NewKubeClientFromContext implements interface
 func (f *DefaultFactoryImpl) NewKubeClientFromContext(context, namespace string, switchContext bool) (kubectl.Client, error) {
 	kubeLoader := f.NewKubeConfigLoader()
 	return kubectl.NewClientFromContext(context, namespace, switchContext, kubeLoader)
-}
-
-// NewKubeClientBySelect implements interface
-func (f *DefaultFactoryImpl) NewKubeClientBySelect(allowPrivate bool, switchContext bool, log log.Logger) (kubectl.Client, error) {
-	kubeLoader := f.NewKubeConfigLoader()
-	return kubectl.NewClientBySelect(allowPrivate, switchContext, kubeLoader, log)
 }
 
 // GetProvider implements interface

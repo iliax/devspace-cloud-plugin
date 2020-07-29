@@ -1,9 +1,14 @@
 package cmd
 
 import (
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/add"
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/connect"
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/create"
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/flags"
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/list"
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/remove"
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/reset"
+	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/set"
 	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/use"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/factory"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/upgrade"
@@ -88,9 +93,16 @@ func BuildRoot(f factory.Factory) *cobra.Command {
 	globalFlags = flags.SetGlobalFlags(persistentFlags)
 
 	// Add sub commands
+	rootCmd.AddCommand(add.NewAddCmd(f))
 	rootCmd.AddCommand(create.NewCreateCmd(f))
-	rootCmd.AddCommand(use.NewUseCmd(f, globalFlags))
+	rootCmd.AddCommand(use.NewUseCmd(f))
 	rootCmd.AddCommand(connect.NewConnectCmd(f))
+	rootCmd.AddCommand(list.NewListCmd(f))
+	rootCmd.AddCommand(remove.NewRemoveCmd(f))
+	rootCmd.AddCommand(reset.NewResetCmd(f))
+	rootCmd.AddCommand(set.NewSetCmd(f))
 
+	// Add base commands
+	rootCmd.AddCommand(NewLoginCmd(f))
 	return rootCmd
 }

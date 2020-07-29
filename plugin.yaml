@@ -1,6 +1,8 @@
 name: devspace-cloud
 version: 0.0.1
 commands:
+  - name: "login"
+    baseArgs: ["login"]
   - name: "create"
     baseArgs: ["create"]
   - name: "connect"

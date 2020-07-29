@@ -3,7 +3,6 @@ package use
 import (
 	"strconv"
 
-	"github.com/devspace-cloud/devspace-cloud-plugin/cmd/flags"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/cloud"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/cloud/config/versions/latest"
 	"github.com/devspace-cloud/devspace-cloud-plugin/pkg/cloud/resume"
@@ -19,15 +18,14 @@ import (
 )
 
 type spaceCmd struct {
-	*flags.GlobalFlags
 	Provider string
 	SpaceID  string
 
 	GetToken bool
 }
 
-func newSpaceCmd(f factory.Factory, globalFlags *flags.GlobalFlags) *cobra.Command {
-	cmd := &spaceCmd{GlobalFlags: globalFlags}
+func newSpaceCmd(f factory.Factory) *cobra.Command {
+	cmd := &spaceCmd{}
 
 	useSpace := &cobra.Command{
 		Use:   "space",

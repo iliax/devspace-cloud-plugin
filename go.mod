@@ -4,15 +4,20 @@ require (
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/daviddengcn/go-colortext v1.0.0 // indirect
 	github.com/devspace-cloud/devspace v1.1.1-0.20200724074930-ec77a1851818
-	github.com/joho/godotenv v1.3.0
+	github.com/machinebox/graphql v0.2.2
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
+	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pkg/errors v0.9.1
 	github.com/rhysd/go-github-selfupdate v0.0.0-20180520142321-41c1bbb0804a
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/pflag v1.0.5
-	k8s.io/apimachinery v0.18.6 // indirect
+	gopkg.in/yaml.v2 v2.2.8
+	gotest.tools v2.2.0+incompatible
+	k8s.io/api v0.18.2
+	k8s.io/apimachinery v0.18.6
+	k8s.io/client-go v0.18.2
 )
 
 replace (
