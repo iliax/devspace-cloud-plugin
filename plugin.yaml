@@ -40,6 +40,25 @@ commands:
   - name: "space"
     baseArgs: ["use", "space"]
     subCommand: "use"
+hooks:
+  - event: analyze
+    baseArgs: ["resume", "space"]
+  - event: attach
+    baseArgs: ["resume", "space"]
+  - event: deploy
+    baseArgs: ["resume", "space"]
+  - event: dev
+    baseArgs: ["resume", "space"]
+  - event: enter
+    baseArgs: ["resume", "space"]
+  - event: logs
+    baseArgs: ["resume", "space"]
+  - event: open
+    baseArgs: ["resume", "space"]
+  - event: purge
+    baseArgs: ["resume", "space"]
+  - event: sync
+    baseArgs: ["resume", "space"]
 vars:
   - name: DEVSPACE_SPACE
     baseArgs: ["vars", "space"]
@@ -50,16 +69,16 @@ vars:
 binaries:
   - os: darwin
     arch: amd64
-    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-darwin-amd64
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-cloud-plugin-darwin-amd64
   - os: linux
     arch: amd64
-    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-linux-amd64
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-cloud-plugin-linux-amd64
   - os: linux
     arch: 386
-    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-linux-386
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-cloud-plugin-linux-386
   - os: windows
     arch: amd64
-    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-windows-amd64.exe
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-cloud-plugin-windows-amd64.exe
   - os: windows
     arch: 386
-    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-windows-386.exe
+    path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.1/devspace-cloud-plugin-windows-386.exe
