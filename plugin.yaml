@@ -74,11 +74,11 @@ binaries:
     arch: amd64
     path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.2/devspace-cloud-plugin-linux-amd64
   - os: linux
-    arch: 386
+    arch: "386"
     path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.2/devspace-cloud-plugin-linux-386
   - os: windows
     arch: amd64
     path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.2/devspace-cloud-plugin-windows-amd64.exe
   - os: windows
-    arch: 386
+    arch: "386"
     path: https://github.com/devspace-cloud/devspace-cloud-plugin/releases/download/v0.0.2/devspace-cloud-plugin-windows-386.exe
