@@ -1,6 +1,8 @@
 package kubectl
 
 import (
+	"fmt"
+	"os"
 	"context"
 	"github.com/devspace-cloud/devspace/pkg/devspace/config/versions/latest"
 	"io"
@@ -83,6 +85,9 @@ func NewClientFromContext(context, namespace string, switchContext bool, kubeLoa
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Print("printing kubeConfigOriginal.APIVersion !!!\n\n")
+	fmt.Print(kubeConfigOriginal.APIVersion)
 
 	// We clone the config here to avoid changing the single loaded config
 	kubeConfig := clientcmdapi.Config{}
